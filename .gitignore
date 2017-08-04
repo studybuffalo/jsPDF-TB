@@ -1,0 +1,3 @@
+# Ignore project solution files
+/.vs
+*.sln
