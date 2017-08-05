@@ -1,4 +1,12 @@
-﻿jsPDF.API.txt = function (txt, options) {
+﻿/**
+ * @file Allows use to place text in PDF with advanced options, such as
+ * resizing, word wrapping, styling.
+ * @author Joshua Torrance <studybuffalo@gmail.com>
+ * @copyright Joshua Torrance 2017
+ * @license LGPL-3.0
+*/
+
+jsPDF.API.txt = function (txt, options) {
 	/*
 		txt = object or string
 		options
@@ -17,7 +25,7 @@
 }
 
 /*
-COLORS
+COLORS (as per jsPDF)
 
 * Depending on the number of arguments given, Gray, RGB, or CMYK
 * color space is implied.

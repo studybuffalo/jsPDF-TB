@@ -1,4 +1,11 @@
-jsPDF.API.addTable = function(body, options) {
+/**
+ * @file Allows placement and formatting of tables.
+ * @author Joshua Torrance <studybuffalo@gmail.com>
+ * @copyright Joshua Torrance 2017
+ * @license LGPL-3.0
+*/
+
+jsPDF.API.addTable = function (body, options) {
 	/* KNOWN ISSUES
 	 *
 	 * There is an issue with line splitting in the presence of line breaks
