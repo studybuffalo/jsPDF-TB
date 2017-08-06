@@ -24,19 +24,20 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 	 * @param {number} tBI - The bold-italic Times width
 	 * @return {object} Object containing all character widths
 	 */
-	var CharRef = function (character, cN, cB, cI, cBI, hN, hB, hI,
-		hBI, tN, tB, tI, tBI) {
-		this.character = character;
-		this.courier = { normal: cN, bold: cB, italic: cI, bolditalic: cBI };
-		this.helvetica = { normal: hN, bold: hB, italic: hI, bolditalic: hBI };
-		this.times = { normal: tN, bold: tB, italic: tI, bolditalic: tBI };
+	class CharRef {
+		constructor(character, cN, cB, cI, cBI, hN, hB, hI, hBI, tN, tB, tI, tBI) {
+			this.character = character;
+			this.courier = { normal: cN, bold: cB, italic: cI, bolditalic: cBI };
+			this.helvetica = { normal: hN, bold: hB, italic: hI, bolditalic: hBI };
+			this.times = { normal: tN, bold: tB, italic: tI, bolditalic: tBI };
+		}
 	}
 
 	/**
 	 * Creates array of CharRef objects containing all font widths.
 	 * Array index matches ASCII character code
 	 */
-	var charList = [
+	const charList = [
 		null,
 		null,
 		null,
@@ -297,11 +298,11 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 
 
 	// Determines width of an individual character
-	function getCharWidth(character, font, style, size) {
-		var width = 1; // Over-estimate to ensure proper fit
+	const charWidth = function getCharWidth(character, font, style, size) {
+		let width = 1; // Over-estimate to ensure proper fit
 
 		// Get current character width in the noted font size and style
-		var charCode = character.charCodeAt(0);
+		const charCode = character.charCodeAt(0);
 
 		if (charCode >= 32 && charCode <= 255 && charList[charCode]) {
 			if (font === "courier") {
@@ -338,21 +339,21 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 		}
 
 		// Correct size for font
-		width = width * size;
+		const fontWidth = width * size;
 		
-		return width;
+		return fontWidth;
 	}
 
 	// Measure each character and add to total width
-	var stringWidth = 0;
+	let stringWidth = 0;
 
 	for (var i = 0, l = str.length; i < l; i++) {
-		stringWidth += getCharWidth(str.charAt(i), font, style, size);
+		stringWidth += charWidth(str.charAt(i), font, style, size);
 	}
 
 
 	// Round to nearest thousandth (smallest font measurement)
-	stringWidth = Math.round(stringWidth * 1000) / 1000;
+	stringWidth = Math.round(stringWidth * 1e3) / 1e3;
 
 	return stringWidth;
 }
