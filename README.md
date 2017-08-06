@@ -4,7 +4,7 @@ including table design and string measurement.
 
 ## Comments/Disclaimer
 These tools tend to be functionality I designed for other projects. At 
-somepoint the intention will be to roll it all into a proper jsPDF 
+some point the intention will be to roll it all into a proper jsPDF 
 plugin. As a hobby-programmer I cannot promise everything will adhere 
 to the *standards*, but I certainly try to and am happy to hear any 
 suggestions.
@@ -17,7 +17,7 @@ This library requires jsPDF. Details for usage can be found at
 1. Include the JavaScript files in your webpage
 ```html
 <script src="jspdf.min.js"></script>
-<script src="jspdf-gb.js"></script>
+<script src="jspdf-tb.js"></script>
 ```
 2. Any of the functions can be accessed by calling them from a jsPDF 
 object
