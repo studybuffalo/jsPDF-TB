@@ -346,12 +346,12 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 
 	// Measure each character and add to total width
 	let stringWidth = 0;
+	const length = str.length;
 
-	for (var i = 0, l = str.length; i < l; i++) {
+	for (let i = 0; i < length; i += 1) {
 		stringWidth += charWidth(str.charAt(i), font, style, size);
 	}
-
-
+	
 	// Round to nearest thousandth (smallest font measurement)
 	stringWidth = Math.round(stringWidth * 1e3) / 1e3;
 
