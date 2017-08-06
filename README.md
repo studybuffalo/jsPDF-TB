@@ -32,7 +32,10 @@ pdf.getStringWidth("This is a test string", "helvetica", "normal", 12); // 100.0
 This library attempts to follow the 
 [airbnb style guide](https://github.com/airbnb/javascript), with the 
 following exceptions:
-- Indents are done with 4 spaces, rather than 2
+- Indents are done with 4 spaces, rather than 2 (personal preference for 
+readability)
+- Strings are enclosed in double quotes (single quotes are used more 
+often in strings and would require excessive escaping)
 
 ## License (LGPL-3.0)
 This program is free software: you can redistribute it and/or modify 
