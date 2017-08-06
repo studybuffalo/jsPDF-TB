@@ -6,7 +6,7 @@
  */
 
 /** Takes the provided string and measures it */
-function measureString() {
+const testMeasure = function measureString() {
 	// Get required details for string measurement
 	var input = document.getElementById("stringWidthInput").innerText;
 	var font = document.getElementById("stringWidthFont").value
@@ -23,4 +23,4 @@ function measureString() {
 
 // Add the event listeners
 document.getElementById("measureString")
-		.addEventListener("click", measureString);
+	.addEventListener("click", testMeasure);
