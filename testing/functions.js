@@ -18,7 +18,7 @@ function measureString() {
 	var width = pdf.getStringWidth(input, font, style, size);
 
 	// Return result to HTML span
-	document.getElementById("stringWidthResult").innerText = "String Width: " + width + " pt";
+	document.getElementById("stringWidthResult").innerText = `String Width: ${width} pt`;
 }
 
 // Add the event listeners
