@@ -6,7 +6,7 @@
  * @license LGPL-3.0
 */
 
-jsPDF.API.getStringWidth = function (str, size, style) {
+jsPDF.API.getStringWidth = function (str, font, style, size) {
 	/**
 	 * Assembles a nested array of all character sizes
 	 * @param {string} character - The character
@@ -347,7 +347,7 @@ jsPDF.API.getStringWidth = function (str, size, style) {
 	var stringWidth = 0;
 
 	for (var i = 0, l = str.length; i < l; i++) {
-		stringWidth += getCharWidth(str.charAt(i), "helvetica", "normal", 1);
+		stringWidth += getCharWidth(str.charAt(i), font, style, size);
 	}
 
 

@@ -18,11 +18,26 @@
 
 		<div>
 			Font: 
-			<select>
-				<option selected="selected">Helvetica</option>
-				<option>Times</option>
-				<option>Courier</option>
+			<select id="stringWidthFont">
+				<option value="helvetica" selected="selected">Helvetica</option>
+				<option value="times">Times</option>
+				<option value="courier">Courier</option>
 			</select>
+		</div>
+
+		<div>
+			Style: 
+			<select id="stringWidthStyle">
+				<option value="normal" selected="selected">Normal</option>
+				<option value="bold">Bold</option>
+				<option value="italic">Italic</option>
+				<option value="bolditalic">Bold-Italic</option>
+			</select>
+		</div>
+
+		<div>
+			Font Size: 
+			<input type="number" id="stringWidthSize" value="12" min="0.1" step="0.1">
 		</div>
 
 		<div>

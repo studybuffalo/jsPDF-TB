@@ -7,12 +7,15 @@
 
 /** Takes the provided string and measures it */
 function measureString() {
-	// Get string to measure
+	// Get required details for string measurement
 	var input = document.getElementById("stringWidthInput").innerText;
+	var font = document.getElementById("stringWidthFont").value
+	var style = document.getElementById("stringWidthStyle").value
+	var size = document.getElementById("stringWidthSize").value
 
 	// Measure string
 	var pdf = new jsPDF();
-	var width = pdf.getStringWidth(input);
+	var width = pdf.getStringWidth(input, font, style, size);
 
 	// Return result to HTML span
 	document.getElementById("stringWidthResult").innerText = "String Width: " + width + " pt";
