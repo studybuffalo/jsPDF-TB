@@ -1,0 +1,16 @@
+#stringWidthTesting > div {
+	margin: 1em;
+}
+
+#stringWidthInput {
+	height: 10em;
+	width: 25em;
+	border: 1px solid black;
+
+}
+
+#stringWidthResult {
+	height: 2em;
+	width: 25em;
+	vertical-align: middle;
+}

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="style.css">
+	<script src="../jspdf.min.js"></script>
 	<script src="../jspdf-width.js"></script>
 	<script src="../jspdf-text.js"></script>
 	<script src="../jspdf-tables.js"></script>
@@ -11,16 +13,31 @@
 
 	<hr>
 	
-	<h2>String Width Measuring</h2>
-	
-	<div>
-		<div contenteditable="true"></div>
+	<div id="stringWidthTesting">
+		<h2>String Width Measuring</h2>
+
+		<div>
+			Font: 
+			<select>
+				<option selected="selected">Helvetica</option>
+				<option>Times</option>
+				<option>Courier</option>
+			</select>
+		</div>
+
+		<div>
+			<div id="stringWidthInput" contenteditable="true">This is a test string to measure</div>
+		</div>
+
+		<div>
+			<span id="stringWidthResult">String Width: </span>
+		</div>
+
+		<div>
+			<input type="button" id="measureString" value="Measure String">
+		</div>
 	</div>
 
-	<div>
-		<span id="stringWidht"></span>
-	</div>
-
-	<input type="button" value="Measure String">
+	<script src="functions.js"></script>
 </body>
 </html>
