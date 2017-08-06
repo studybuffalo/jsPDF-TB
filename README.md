@@ -25,9 +25,14 @@ object
 var doc = new jsPDF(); // Creates a jsPDF object
 
 // Measure the length of a text string
-pdf.getStringWidth("This is a test string", "helvetica", "normal", 12);
-// Returns a value of 100.032 pt
+pdf.getStringWidth("This is a test string", "helvetica", "normal", 12); // 100.032 pt
 ```
+
+## Style Guide
+This library attempts to follow the 
+[airbnb style guide](https://github.com/airbnb/javascript), with the 
+following exceptions:
+- Indents are done with 4 spaces, rather than 2
 
 ## License (LGPL-3.0)
 This program is free software: you can redistribute it and/or modify 
