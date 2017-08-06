@@ -351,9 +351,10 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 			} else if (font === "courier") {
 				width = charList[charCode].courier;
 			}
+		} else {
+			console.warn(`Character code ${charCode} out of range`)
 		}
-
-
+		
 		// Correct size for font
 		const fontWidth = width * size;
 		
