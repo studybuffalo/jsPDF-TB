@@ -31,7 +31,7 @@
 /**
  * Places text of various formats into the PDF
  */
-jsPDF.API.aText = function advancedText(txt, options) {
+jsPDF.API.aText = function advancedText(txt, options = {}) {
 	/*
 		txt = object or string
 		options
