@@ -21,6 +21,16 @@ const testMeasure = function measureString() {
 	document.getElementById("stringWidthResult").innerText = `String Width: ${width} pt`;
 }
 
+/** Generates a PDF with the advanced text feature */
+const testText = function testAdvancedText() {
+	const testText = "This is test text";
+
+	// Place the test text
+	var pdf = new jsPDF();
+	pdf.aText(testText);
+}
+
 // Add the event listeners
-document.getElementById("measureString")
-	.addEventListener("click", testMeasure);
+document.getElementById("measureString").addEventListener("click", testMeasure);
+
+document.getElementById("testAdvancedText").addEventListener("click", testAdvancedText);
