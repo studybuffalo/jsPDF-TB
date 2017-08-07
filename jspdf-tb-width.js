@@ -439,7 +439,7 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size)
 
 	// Convert to the desired output unit
 	const unit = getUnit(this);
-	const convertedUnit = unitOutput(stringWidth, unit);
+	const convertedWidth = unitOutput(stringWidth, unit);
 
-	return convertedUnit;
+	return convertedWidth;
 }
