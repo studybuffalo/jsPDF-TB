@@ -24,7 +24,7 @@
  */
 
 /**
- * The text chunk object
+ * The segment object
  */
 
 
@@ -32,17 +32,47 @@
  * Places text of various formats into the PDF
  */
 jsPDF.API.aText = function advancedText(txt, options = {}) {
-	/**
-	 *	txt = object or string
-	 *	options
-	 *		width
-	 *		height
-	 *		text options
-	 *	Paragraph Object
-	 *
-	 *	Lines Object
-	 */
+	class TextBox {
+		constructor() {
+			this.width = null;
+			this.height = null;
+		}
+	}
 
+	class Paragraphs extends TextBox {
+		constructor(paragraphs = []) {
+			this.paragraphs = paragraphs;
+		}
+	}
+
+	class Paragraph extends TextBox {
+		constructor(lines = []) {
+			this.lines = lines;
+		}
+	}
+
+	class Lines extends TextBox {
+		constructor(lines = []) {
+			this.line = line;
+		}
+	}
+
+	class Line extends TextBox {
+		constructor(segments = []) {
+			this.segments = segments;
+		}
+	}
+
+	class TextSegment extends TextBox {
+		constructor() {
+			this.color = null;
+			this.font = null;
+			this.size = null;
+			this.style = null;
+			this.txt = null;
+		}
+	}
+	
 	// set up reference to the PDF document
 	const doc = this;
 	const pdfWidth = doc.internal.pageSize.width;
