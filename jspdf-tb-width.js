@@ -8,12 +8,17 @@
 
 /**
  * Extends the jsPDF library to measure string widths
- * @param {string} str - The string to measure
- * @param {string} font - The desired font
- * @param {string} style - The desired style
- * @param {number} size - The desired size
+ * @param {string} [str=empty string] - The string to measure
+ * @param {string} [font=current document font] - The desired font
+ * @param {string} [style=current document style] - The desired style
+ * @param {number} [size=current document size] - The desired size
  */
-jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size) {
+jsPDF.API.getStringWidth = function calculateStringWidth(
+	str = "",
+	font = this.internal.getFont().fontName, 
+	style = this.internal.getFont().fontStyle,
+	size = this.internal.getFontSize(),
+ ) {
 	/** Assembles a collection of objects describing character width */
 	class CharRef {
 		/**
@@ -307,12 +312,7 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size)
 	 * @param {number} size - The desired size (default: 12)
 	 * @return {number} fontWidth - The width of the provided character
 	 */
-	const charWidth = function getCharWidth(
-		character,
-		font = "helvetica",
-		style = "normal",
-		size = 12,
-	) {
+	const charWidth = function getCharWidth(character, font, style, size) {
 		// Over-estimate to ensure proper fit
 		let width = 1;
 
@@ -435,8 +435,7 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size)
 	for (let i = 0; i < length; i += 1) {
 		stringWidth += charWidth(str.charAt(i), font, style, size);
 	}
-
-
+	
 	// Convert to the desired output unit
 	const unit = getUnit(this);
 	const convertedWidth = unitOutput(stringWidth, unit);
