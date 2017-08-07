@@ -5,7 +5,7 @@
  * @copyright Joshua Torrance 2017
  * @license LGPL-3.0
  */
-jsPDF.API.getStringWidth = function (str, font, style, size) {
+jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size) {
 	/** Assembles a collection of objects describing character width */
 	class CharRef {
 		/**
