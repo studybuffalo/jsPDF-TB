@@ -35,7 +35,7 @@ object
 var doc = new jsPDF(); // Creates a jsPDF object
 
 // Measure the length of a text string
-pdf.getStringWidth("This is a test string", "helvetica", "normal", 12); // 36.465933 mm
+pdf.getStringWidth("This is a test string", "helvetica", "normal", 12); // 35.289067 mm
 ```
 
 ## Style Guide
