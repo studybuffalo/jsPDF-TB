@@ -15,68 +15,99 @@
  *     lines, text chunk model
  */
 
-/**
- * The paragraph object
- */
-
-/**
- * The line object
- */
-
-/**
- * The segment object
- */
-
-
-/**
- * Places text of various formats into the PDF
- */
-jsPDF.API.aText = function advancedText(txt, options = {}) {
+jsPDF.API.newText = function createTextObject(type = "segment") {
 	class TextBox {
-		constructor() {
-			this.width = null;
-			this.height = null;
-		}
-	}
-
-	class Paragraphs extends TextBox {
-		constructor(paragraphs = []) {
-			this.paragraphs = paragraphs;
-		}
-	}
-
-	class Paragraph extends TextBox {
-		constructor(lines = []) {
-			this.lines = lines;
-		}
-	}
-
-	class Lines extends TextBox {
-		constructor(lines = []) {
-			this.line = line;
-		}
-	}
-
-	class Line extends TextBox {
-		constructor(segments = []) {
-			this.segments = segments;
-		}
-	}
-
-	class TextSegment extends TextBox {
 		constructor() {
 			this.color = null;
 			this.font = null;
 			this.size = null;
 			this.style = null;
+		}
+	}
+
+	class TextSegment extends TextBox {
+		constructor() {
+			super();
 			this.txt = null;
 		}
 	}
+
+	class Line extends TextBox {
+		constructor() {
+			super();
+			this.segments = [new TextSegment()];
+		}
+	}
+
+	class Lines extends TextBox {
+		constructor() {
+			super();
+			this.line = [new Line()];
+			this.align = null;
+		}
+	}
+
+	class Paragraph extends TextBox {
+		constructor() {
+			super();
+			this.lines = [new Lines()];
+			this.lineSpacing = null;
+			this.align = null;
+		}
+	}
+
+	class Paragraphs extends TextBox {
+		constructor() {
+			super();
+			this.paragraphs = [new Paragraph()];
+			this.paragraphSpacing = null;
+			this.lineSpacing = null;
+			this.align = null;
+		}
+	}
+
+	let returnObject;
+
+	switch (type) {
+		case "segment": {
+			returnObject = new TextSegment();
+			break;
+		}
+		case "line": {
+			returnObject = new Line();
+			break;
+		}
+		case "lines": {
+			returnOject = new Lines();
+			break;
+		}
+		case "paragraph": {
+			returnObject = new Paragraph();
+			break;
+		}
+		case "paragraphs": {
+			returnObject = new Paragraphs();
+			break;
+		}
+	}
+
+	return returnObject;
+}
+/**
+ * Places text of various formats into the PDF
+ */
+jsPDF.API.aText = function advancedText(txt, options = {}) {
+	
 	
 	// set up reference to the PDF document
 	const doc = this;
 	const pdfWidth = doc.internal.pageSize.width;
 	const pdfHeight = doc.internal.pageSize.height;
+
+	/**
+	 * string = single text segment/line
+	 * [string, string]
+	 */
 }
 
 /**
