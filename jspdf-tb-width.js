@@ -5,7 +5,16 @@
  * @copyright Joshua Torrance 2017
  * @license LGPL-3.0
  */
-jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size) {
+
+/**
+ * Extends the jsPDF library to measure string widths
+ * @param {string} str - The string to measure
+ * @param {string} font - The desired font
+ * @param {string} style - The desired style
+ * @param {number} size - The desired size
+ * @param {string} unit - The desired output unit
+ */
+jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size, unit="mm") {
 	/** Assembles a collection of objects describing character width */
 	class CharRef {
 		/**
@@ -363,6 +372,42 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size)
 		return fontWidth;
 	}
 
+	/**
+	 * Converts the provided width to the desired output unit
+	 * @param {number} width - The width to convert
+	 * @param {string} unit - The unit to convert to
+	 */
+	const unitOutput = function convertToOutputUnit(width, unit) {
+		const ptPerInch = 72;
+		const mmPerInch = 25.4;
+		let convWidth = 0;
+		let roundWidth = 0;
+
+		switch (unit) {
+			case "mm": {
+				convWidth = width * mmPerInch / ptPerInch;
+				roundWidth = Math.round(convWidth * 1e2) / 1e2;
+				break;
+			}
+			case "pt": {
+				roundWidth = width;
+				break;
+			}
+			case "cm": {
+				convWidth = width * mmPerInch / ptPerInch / 10;
+				roundWidth = Math.round(convWidth * 1e3) / 1e3;
+				break;
+			}
+			case "in": {
+				convWidth = width / ptPerInch;
+				roundWidth = Math.round(convWidth * 1e3) / 1e3;
+				break;
+			}
+		}
+
+		return roundWidth;
+	}
+
 	// Measure each character and add to total width
 	let stringWidth = 0;
 	const length = str.length;
@@ -372,7 +417,10 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size)
 	}
 	
 	// Round to nearest thousandth (smallest font measurement)
-	stringWidth = Math.round(stringWidth * 1e3) / 1e3;
+	let roundedWidth = Math.round(stringWidth * 1e3) / 1e3;
+
+	// Convert to the desired output unit
+	let convertedUnit = unitOutput(roundedWidth, unit);
 
 	return stringWidth;
 }
