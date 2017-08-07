@@ -4,9 +4,34 @@
  * @author Joshua Torrance <studybuffalo@gmail.com>
  * @copyright Joshua Torrance 2017
  * @license LGPL-3.0
-*/
+ */
 
-jsPDF.API.txt = function (txt, options) {
+/**
+ * PLANNING FOR LIBRARY
+ * aText will place either strings or objects
+ *   - Strings will be placed as dictated by options
+ *   - Objects will be a new class to add customizability to text styles
+ *     (e.g. multiple styles, sizes, fonts) and provide a basic paragraphs,
+ *     lines, text chunk model
+ */
+
+/**
+ * The paragraph object
+ */
+
+/**
+ * The line object
+ */
+
+/**
+ * The text chunk object
+ */
+
+
+/**
+ * Places text of various formats into the PDF
+ */
+jsPDF.API.aText = function advancedText(txt, options) {
 	/*
 		txt = object or string
 		options
@@ -17,11 +42,12 @@ jsPDF.API.txt = function (txt, options) {
 
 		Lines Object
 	*/
-	doc = this;
-	console.log(doc.internal.pageSize.width);
-	console.log(doc.internal.pageSize.height);
+
+	// set up reference to the PDF document
+	const doc = this;
+	const pdfWidth = doc.internal.pageSize.width;
+	const pdfHeight = doc.internal.pageSize.height;
 	console.log(doc.internal.getCurrentPageInfo);
-	doc.text(txt, 0, 0);
 }
 
 /*
