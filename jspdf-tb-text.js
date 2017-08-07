@@ -32,22 +32,21 @@
  * Places text of various formats into the PDF
  */
 jsPDF.API.aText = function advancedText(txt, options = {}) {
-	/*
-		txt = object or string
-		options
-			width
-			height
-			text options
-		Paragraph Object
-
-		Lines Object
-	*/
+	/**
+	 *	txt = object or string
+	 *	options
+	 *		width
+	 *		height
+	 *		text options
+	 *	Paragraph Object
+	 *
+	 *	Lines Object
+	 */
 
 	// set up reference to the PDF document
 	const doc = this;
 	const pdfWidth = doc.internal.pageSize.width;
 	const pdfHeight = doc.internal.pageSize.height;
-	console.log(doc.internal.getCurrentPageInfo);
 }
 
 /*
