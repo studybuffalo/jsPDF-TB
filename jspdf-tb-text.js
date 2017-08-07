@@ -97,12 +97,29 @@ jsPDF.API.newText = function createTextObject(type = "segment") {
  * Places text of various formats into the PDF
  */
 jsPDF.API.aText = function advancedText(txt, options = {}) {
-	
+	/**
+	 * Options to consider
+	 * Where to place the object
+	 * Width/height restrictions (default to page height/width);
+	 * Shrink to fit, wrap text, new page, truncate
+	 */
 	
 	// set up reference to the PDF document
 	const doc = this;
+
+	// Collect relevant document properties
 	const pdfWidth = doc.internal.pageSize.width;
 	const pdfHeight = doc.internal.pageSize.height;
+	const font = doc.internal.getFont().fontName;
+	const fontSize = doc.internal.getFontSize();
+	const fontStyle = doc.internal.getFont().fontStyle;
+
+	console.log(pdfWidth);
+	console.log(pdfHeight);
+	console.log(font);
+	console.log(fontSize);
+	console.log(fontStyle);
+	
 
 	/**
 	 * string = single text segment/line
