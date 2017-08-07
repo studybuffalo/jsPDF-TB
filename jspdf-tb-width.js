@@ -4,27 +4,25 @@
  * @author Joshua Torrance <studybuffalo@gmail.com>
  * @copyright Joshua Torrance 2017
  * @license LGPL-3.0
-*/
-
+ */
 jsPDF.API.getStringWidth = function (str, font, style, size) {
-	/**
-	 * Assembles a nested array of all character sizes
-	 * @param {string} character - The character
-	 * @param {number} cN - The normal Courier width
-	 * @param {number} cB - The bold Courier width
-	 * @param {number} cI - The italic Courier width
-	 * @param {number} cBI - The bold-italic Courier width
-	 * @param {number} hN - The normal Helvetica width
-	 * @param {number} hB - The bold Helvetica width
-	 * @param {number} hI - The italic Helvetica width
-	 * @param {number} hBI - The bold-italic Helvetica width
-	 * @param {number} tN - The normal Times width
-	 * @param {number} tB - The bold Times width
-	 * @param {number} tI - The italic Times width
-	 * @param {number} tBI - The bold-italic Times width
-	 * @return {object} Object containing all character widths
-	 */
+	/** Assembles a collection of objects describing character width */
 	class CharRef {
+		/**
+		 * @param {string} character - The character
+		 * @param {number} cN - The normal Courier width
+		 * @param {number} cB - The bold Courier width
+		 * @param {number} cI - The italic Courier width
+		 * @param {number} cBI - The bold-italic Courier width
+		 * @param {number} hN - The normal Helvetica width
+		 * @param {number} hB - The bold Helvetica width
+		 * @param {number} hI - The italic Helvetica width
+		 * @param {number} hBI - The bold-italic Helvetica width
+		 * @param {number} tN - The normal Times width
+		 * @param {number} tB - The bold Times width
+		 * @param {number} tI - The italic Times width
+		 * @param {number} tBI - The bold-italic Times width
+		 */
 		constructor(character, c, hN, hB, hI, hBI, tN, tB, tI, tBI) {
 			this.character = character;
 			this.courier = c // All courier characters same width
@@ -33,10 +31,7 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 		}
 	}
 
-	/**
-	 * Creates array of CharRef objects containing all font widths.
-	 * Array index matches ASCII character code
-	 */
+	/**  Array of all the character widths for each style */
 	const charList = [
 		null,
 		null,
@@ -295,16 +290,23 @@ jsPDF.API.getStringWidth = function (str, font, style, size) {
 		new CharRef("þ", 0.600, 0.556, 0.611, 0.556, 0.611, 0.500, 0.556, 0.500, 0.500),
 		new CharRef("ÿ", 0.600, 0.500, 0.556, 0.500, 0.556, 0.500, 0.500, 0.444, 0.444)
 	];
-
-
-	// Determines width of an individual character
+	
+	/**
+	 * Sum widths of each character in the string
+	 * @param {string} character - The character to measure
+	 * @param {string} font - The desired font (default: helvetica)
+	 * @param {string} style - The desired style (default: normal)
+	 * @param {number} size - The desired size (default: 12)
+	 * @return {number} fontWidth - The width of the provided character
+	 */
 	const charWidth = function getCharWidth(
 		character,
 		font = "helvetica",
 		style = "normal",
 		size = 12,
 	) {
-		let width = 1; // Over-estimate to ensure proper fit
+		// Over-estimate to ensure proper fit
+		let width = 1;
 
 		// Get current character width in the noted font size and style
 		const charCode = character.charCodeAt(0);
