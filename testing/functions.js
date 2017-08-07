@@ -33,4 +33,4 @@ const testText = function testAdvancedText() {
 // Add the event listeners
 document.getElementById("measureString").addEventListener("click", testMeasure);
 
-document.getElementById("testAdvancedText").addEventListener("click", testAdvancedText);
+document.getElementById("testAdvancedText").addEventListener("click", testText);
