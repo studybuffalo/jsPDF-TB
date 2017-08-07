@@ -1,4 +1,4 @@
-#stringWidthTesting > div {
+#stringWidthTesting > div, #advancedTextTesting > div {
 	margin: 1em;
 }
 
