@@ -18,7 +18,7 @@ const testMeasure = function measureString() {
 	const width = pdf.getStringWidth(input, font, style, size);
 
 	// Return result to HTML span
-	document.getElementById("stringWidthResult").innerText = `String Width: ${width} pt`;
+	document.getElementById("stringWidthResult").innerText = `String Width: ${width}`;
 }
 
 /** Generates a PDF with the advanced text feature */
@@ -27,6 +27,7 @@ const testText = function testAdvancedText() {
 
 	// Place the test text
 	var pdf = new jsPDF();
+	
 	pdf.aText(testText);
 }
 

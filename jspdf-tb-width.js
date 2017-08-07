@@ -12,9 +12,8 @@
  * @param {string} font - The desired font
  * @param {string} style - The desired style
  * @param {number} size - The desired size
- * @param {string} unit - The desired output unit
  */
-jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size, unit="mm") {
+jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size) {
 	/** Assembles a collection of objects describing character width */
 	class CharRef {
 		/**
@@ -373,34 +372,55 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size,
 	}
 
 	/**
+	 * Determines the document unit based on the scale factor
+	 * @param {object} doc - A reference to the jsPDF object
+	 */
+	const getUnit = function getPDFUnit(doc) {
+		const scaleFactor = doc.internal.scaleFactor;
+		
+		if (scaleFactor === 1) {
+			return "pt";
+		} else if (scaleFactor === 72) {
+			return "in";
+		} else if (scaleFactor > 3) {
+			return "cm";
+		} else {
+			return "mm";
+		}
+	}
+
+	/**
 	 * Converts the provided width to the desired output unit
 	 * @param {number} width - The width to convert
 	 * @param {string} unit - The unit to convert to
 	 */
 	const unitOutput = function convertToOutputUnit(width, unit) {
-		const ptPerInch = 72;
-		const mmPerInch = 25.4;
 		let convWidth = 0;
 		let roundWidth = 0;
 
 		switch (unit) {
+			// 72 pt per in, 25.4 mm per in, 6 significant digits
 			case "mm": {
-				convWidth = width * mmPerInch / ptPerInch;
-				roundWidth = Math.round(convWidth * 1e2) / 1e2;
+				convWidth = (width / 72) * 25.4;
+				roundWidth = Math.round(convWidth * 1e6) / 1e6;
 				break;
 			}
-			case "pt": {
-				roundWidth = width;
-				break;
-			}
-			case "cm": {
-				convWidth = width * mmPerInch / ptPerInch / 10;
+			// 3 significant digits
+			case "pt": {	
+				convWidth = width;
 				roundWidth = Math.round(convWidth * 1e3) / 1e3;
 				break;
 			}
+			// 72 pt per in, 7 significant digits
 			case "in": {
-				convWidth = width / ptPerInch;
-				roundWidth = Math.round(convWidth * 1e3) / 1e3;
+				convWidth = width / 72;
+				roundWidth = Math.round(convWidth * 1e7) / 1e7;
+				break;
+			}
+			// 72 pt per in, 2.54 cm per in, 7 significant digits
+			case "cm": {
+				convWidth = (width / 72) * 2.54;
+				roundWidth = Math.round(convWidth * 1e7) / 1e7;
 				break;
 			}
 		}
@@ -415,12 +435,11 @@ jsPDF.API.getStringWidth = function calculateStringWidth(str, font, style, size,
 	for (let i = 0; i < length; i += 1) {
 		stringWidth += charWidth(str.charAt(i), font, style, size);
 	}
-	
-	// Round to nearest thousandth (smallest font measurement)
-	let roundedWidth = Math.round(stringWidth * 1e3) / 1e3;
+
 
 	// Convert to the desired output unit
-	let convertedUnit = unitOutput(roundedWidth, unit);
+	const unit = getUnit(this);
+	const convertedUnit = unitOutput(stringWidth, unit);
 
-	return stringWidth;
+	return convertedUnit;
 }
