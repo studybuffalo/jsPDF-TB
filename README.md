@@ -9,6 +9,16 @@ plugin. As a hobby-programmer I cannot promise everything will adhere
 to the *standards*, but I certainly try to and am happy to hear any 
 suggestions.
 
+### Measuring String Width
+It appears the information contained in jsPDF regarding measuring 
+string widths is based on data provided in Adobe documentation. 
+Unfortunately, the character widths provided in this documentation 
+do not appear to match what jsPDF actually outputs in each situation, 
+which is why the measurements may not be 100% accurate. I have 
+attempted to correct this by recording the values actually outputted 
+by a jsPDF document. One day if I learn enough JavaScript I will try 
+and integrate this into the main library, but no planned ETA on that :).
+
 ## Dependencies
 This library requires jsPDF. Details for usage can be found at 
 [their repository](https://github.com/MrRio/jsPDF).
